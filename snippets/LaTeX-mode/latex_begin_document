@@ -1,0 +1,34 @@
+# -*- mode: snippet -*-
+# name: latex begin document
+# key: <sl
+# --
+
+\documentclass[9pt]{article}
+\usepackage [a4paper]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{gensymb}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\author{psdp}
+\date{\textit{$1}}
+\title{Notes week-$2}
+\begin{document}
+\hypersetup{
+  pdfauthor={psdp},
+  pdftitle={pdftitle},
+  pdfcreator={Emacs 29.4}, 
+  pdflang={English}}
+\maketitle
+\tableofcontents
+\newpage
+\section{Introduction}
+This document will contain my notes from the first week of lectures of EN2721. The notes here are based on the lecture slides for this week which can be found in the same directory.$0
+\end{document}

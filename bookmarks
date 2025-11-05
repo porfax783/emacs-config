@@ -1,0 +1,23 @@
+;;;; Emacs Bookmark Format Version 1;;;; -*- coding: utf-8-emacs; mode: lisp-data -*-
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("org-capture-last-stored-marker"
+ (filename . "~/programming/org/agenda.org")
+ (front-context-string . "** TODO organize")
+ (rear-context-string . "2025-08-14 Thu>\n")
+ (position . 6368)
+ (last-modified 26764 49704 116016 315000))
+("org-refile-last-stored"
+ (filename . "~/programming/org/agenda.org")
+ (front-context-string . "** TODO organize")
+ (rear-context-string . "2025-08-14 Thu>\n")
+ (position . 6368)
+ (last-modified 26764 49704 115448 371000))
+("org-capture-last-stored"
+ (filename . "~/org_roam/20250926195039-test.org")
+ (front-context-string . "this is a test\n:")
+ (rear-context-string)
+ (position . 1)
+ (last-modified 26838 57489 662339 158000))
+)
