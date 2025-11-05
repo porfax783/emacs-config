@@ -136,6 +136,8 @@
 ;;magit
 (use-package magit
     :ensure t
+    :bind
+    ("C-x C-g" . magit-status)
     :config)
 
 ;;erc
