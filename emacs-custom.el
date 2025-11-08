@@ -7,7 +7,7 @@
  '(org-agenda-files '("~/programming/org/agenda.org"))
  '(package-selected-packages
    '(arduino-cli-mode arduino-mode auctex cdlatex elfeed fzf magit
-                      markdown-mode multiple-cursors pdf-tools
+                      markdown-mode multiple-cursors pdf-tools smex
                       yasnippet))
  '(tex-default-mode 'LaTeX-mode))
 (custom-set-faces

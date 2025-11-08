@@ -57,7 +57,12 @@
 ;;ido and fido mode
 (ido-mode 1)
 (setq ido-auto-merge-delay-time 999999999)
-(fido-mode 1)
+;;(fido-mode 1) 
+;;fido mode is really slow so I am using smex instead until they fix this shit
+(use-package smex
+    :ensure t
+    :bind
+    ("M-x" . smex))
 
 ;;org mode changes
 (setq org-directory "~/programming/org")
