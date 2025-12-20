@@ -15,9 +15,9 @@
  (position . 6368)
  (last-modified 26764 49704 115448 371000))
 ("org-capture-last-stored"
- (filename . "~/org_roam/20250926195039-test.org")
- (front-context-string . "this is a test\n:")
+ (filename . "~/programming/org/inbox.org")
+ (front-context-string . "* TODO need to g")
  (rear-context-string)
  (position . 1)
- (last-modified 26838 57489 662339 158000))
+ (last-modified 26949 30752 686009 604000))
 )
