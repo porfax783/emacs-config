@@ -16,8 +16,8 @@
  (last-modified 26764 49704 115448 371000))
 ("org-capture-last-stored"
  (filename . "~/programming/org/inbox.org")
- (front-context-string . "* TODO need to g")
- (rear-context-string)
- (position . 1)
- (last-modified 26949 30752 686009 604000))
+ (front-context-string . "* TODO efficienc")
+ (rear-context-string . " communications\n")
+ (position . 2768)
+ (last-modified 27189 662 749319 941000))
 )

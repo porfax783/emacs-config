@@ -56,9 +56,32 @@
 (set-register ?w (cons 'file "~/programming/org/wiki.org"))
 
 ;;fido and ido mode
-(ido-mode 1)
-(setq ido-auto-merge-delay-time 999999999)
-(fido-mode 1)
+(ido-mode -1)
+;;(setq ido-auto-merge-delay-time 999999999)
+(fido-mode -1)
+
+;;vertico configuration
+(use-package vertico
+    :ensure t
+    :config
+    (vertico-mode))
+
+;;marginalia
+(use-package marginalia
+    :ensure t
+    :config
+    (marginalia-mode))
+
+;;orderless
+(use-package orderless
+    :ensure t
+    :custom
+    (completion-styles '(orderless basic))
+    (completion-category-overrides '((file (styles partial-completion))))
+    (completion-pcm-leading-wildcard t))
+
+;;minibuffer config
+;;(enable-recursive-minibuffers t)
 
 ;;fzf
 (use-package fzf
@@ -184,7 +207,7 @@
 
 ;;changes for org agenda
 (setq org-log-done t
-      org-agenda-files '("~/programming/org/agendas"))
+      org-agenda-files '("~/programming/org/inbox.org"))
 
 
 ;;org capture templates
@@ -253,6 +276,8 @@
 ;;pdf tools
 (use-package pdf-tools
     :ensure t
+    :init
+    (pdf-tools-install)
     :config
     (add-hook 'pdf-view-mode-hook (lambda ()(display-line-numbers-mode -1)))
     (add-to-list 'auto-mode-alist '("\\.pdf\\'" . pdf-view-mode)))
@@ -316,7 +341,10 @@
     (setq gptel-model 'gpt-5.4-mini
           gptel-default-mode 'org-mode))
 
-;;iterm
+;;mix mode
+(autoload 'mixvm "mixvm" "mixvm/gud interaction" t)
+
+;;eat
 (use-package eat
     :ensure t)
 
