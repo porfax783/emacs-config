@@ -1,3 +1,5 @@
+;;; init.el --- Personal Emacs configuration -*- lexical-binding: t; -*-
+
 ;;new emacs config as of 27-12-2025
 ;;old one had a lot of problems specially with keybinds
 
@@ -128,6 +130,9 @@
     :ensure t
     :config)
 
+;;gdb
+;;(gdb-many-windows t)
+
 ;;go mode changes
 (use-package go-mode
     :ensure t
@@ -140,7 +145,7 @@
                   (setq indent-tabs-mode nil)))
     
     (defun project-find-go-module (dir)
-        (when-let ((root (locate-dominating-file dir "go.mod")))
+        (when-let* ((root (locate-dominating-file dir "go.mod")))
             (cons 'go-module root)))
     (cl-defmethod project-root ((project (head go-module)))
         (cdr project))
@@ -150,6 +155,9 @@
     (defun eglot-format-buffer-before-save ()
         (add-hook 'before-save-hook #'eglot-format-buffer -10 t))
     (add-hook 'go-mode-hook #'eglot-format-buffer-before-save))
+
+;;html mode
+(add-hook 'mhtml-mode #'eglot-ensure)
 
 ;;cobol mode
 (use-package cobol-mode
@@ -253,6 +261,10 @@
 (use-package markdown-mode
                 :ensure t)
 
+;;expand-region must load before multiple-cursors adds advice to it.
+(use-package expand-region
+    :ensure t)
+
 ;;adding muliple cursors
 (use-package multiple-cursors
     :ensure t
@@ -260,10 +272,6 @@
 
 ;;treemacs
 (use-package treemacs
-    :ensure t)
-
-;;expandregion
-(use-package expand-region
     :ensure t)
 
 ;;erc
@@ -276,8 +284,8 @@
 ;;pdf tools
 (use-package pdf-tools
     :ensure t
-    :init
-    (pdf-tools-install)
+;;    :init
+;;    (pdf-tools-install)
     :config
     (add-hook 'pdf-view-mode-hook (lambda ()(display-line-numbers-mode -1)))
     (add-to-list 'auto-mode-alist '("\\.pdf\\'" . pdf-view-mode)))
@@ -296,24 +304,24 @@
     )
 
 ;;elfeed
- (use-package elfeed
-     :ensure t
-     :config
-     (setq elfeed-feeds
-           '("https://battlepenguin.com/feed.xml"
-             "https://pantsuprophet.xyz/index/pantsuprophet.xml"
-             "https://joshblais.com/index.xml"
-             "https://www.eff.org/rss/updates.xml"
-             "https://act.eff.org/action.atom"
-             "https://sadgrl.online/posts/rss.xml"
-             "https://corbettreport.com/feed/"
-             "https://analognowhere.com/feed/rss.xml"
-             "https://archlinux.org/feeds/news/"
-             "https://esquizo.net/blog/index.rss"
-             "https://lukesmith.xyz/index.xml"
-             "https://hnrss.org/newest?points=25"
-             "https://karthinks.com/index.xml"
-             )))
+;; (use-package elfeed
+;;     :ensure t
+;;     :config
+;;     (setq elfeed-feeds
+;;           '("https://battlepenguin.com/feed.xml"
+;;             "https://pantsuprophet.xyz/index/pantsuprophet.xml"
+;;             "https://joshblais.com/index.xml"
+;;             "https://www.eff.org/rss/updates.xml"
+;;             "https://act.eff.org/action.atom"
+;;             "https://sadgrl.online/posts/rss.xml"
+;;             "https://corbettreport.com/feed/"
+;;             "https://analognowhere.com/feed/rss.xml"
+;;             "https://archlinux.org/feeds/news/"
+;;             "https://esquizo.net/blog/index.rss"
+;;             "https://lukesmith.xyz/index.xml"
+;;             "https://hnrss.org/newest?points=25"
+;;             "https://karthinks.com/index.xml"
+;;             )))
 
 ;;buffer and window packages
 (use-package buffer-move
