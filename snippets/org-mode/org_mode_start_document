@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: org mode start document
+# key: >so
+# --
+
+#+TITLE: $1
+#+AUTHOR: psdp/porfax
+#+CONTACT: porfax@posteo.com
+#+DATE: $2
+
+* Introduction
+
+$0
