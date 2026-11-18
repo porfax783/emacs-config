@@ -28,7 +28,7 @@
 (scroll-bar-mode -1)
 (global-visual-line-mode t)
 (global-display-line-numbers-mode 1)
-;;(load-theme 'modus-vivendi)
+;;(load-theme 'modus-operandi)
 (global-hl-line-mode 1)
 (show-paren-mode 1)
 (column-number-mode 1)
@@ -40,7 +40,7 @@
 (use-package gruvbox-theme
     :ensure t
     :config
-    (load-theme 'gruvbox-dark-hard))
+    (load-theme 'gruvbox-light-hard))
 
 ;;small functional changes
 (setq use-short-answers t
@@ -105,14 +105,26 @@
     (define-key c-mode-base-map "\C-m" 'c-context-line-break))
 (add-hook 'c-initialization-hook 'my-make-CR-do-indent)
 
+;;cpp mode changes
+(add-to-list 'exec-path
+             (expand-file-name "~/opt/clangd_23.1.0/bin/"))
+(add-hook 'c++-mode-hook #'eglot-ensure)
+
 ;;cmake mode
 (use-package cmake-mode
     :ensure t)
 
+;;platformio for microcontrollers
+(use-package platformio-mode
+    :ensure t
+    :config)
+
 ;;arduino mode packages
 (use-package arduino-mode
     :ensure t
-    :config)
+    :config
+    (add-to-list 'auto-mode-alist '("\\.ino\\'" . arduino-mode)))
+
 (use-package arduino-cli-mode
     :ensure t
     :hook arduino-mode
@@ -130,8 +142,8 @@
     :ensure t
     :config)
 
-;;gdb
-;;(gdb-many-windows t)
+;;compile mode
+(setq compilation-scroll-output 'first-error)
 
 ;;go mode changes
 (use-package go-mode
@@ -176,6 +188,10 @@
 (add-hook 'python-mode-hook #'eglot-ensure) 
 (add-hook 'python-mode-hook #'font-lock-mode)
 
+;;qt changes
+(use-package qml-mode
+    :ensure t
+    :config)
 
 ;;octave mode
 (setq auto-mode-alist
@@ -193,6 +209,11 @@
 ;;dict mode changes
 (setq dictionary-server "dict.org")
 
+;; Use an installed spell checker explicitly.  Without this, Emacs can pick
+;; enchant-2 even when Enchant has no dictionary provider configured.
+(setq ispell-program-name "aspell"
+      ispell-dictionary "en_US")
+
 ;;yasnippet
 (use-package yasnippet
     :ensure t
@@ -200,6 +221,12 @@
     (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
     (yas-global-mode 1)
     )
+
+;;tramp mode (ssh for emacs)
+(tramp-set-completion-function
+ "ssh" (append (tramp-get-completion-function "ssh")
+               (mapcar (lambda (file) `(tramp-parse-sconfig ,file))
+                       "~/.ssh/config")))
 
 ;;org mode changes
 (setq org-directory "~/programming/org")
@@ -215,7 +242,7 @@
 
 ;;changes for org agenda
 (setq org-log-done t
-      org-agenda-files '("~/programming/org/inbox.org"))
+      org-agenda-files '("~/Documents/programming/inbox/inbox.org"))
 
 
 ;;org capture templates
@@ -241,6 +268,7 @@
     :config
     (setq TeX-auto-save t)
     (setq TeX-parse-self t)
+    (add-to-list 'TeX-view-program-selection '(output-pdf "Zathura"))
     (add-hook 'LaTeX-mode-hook 'visual-line-mode)
     (add-hook 'LaTeX-mode-hook 'flyspell-mode)
     (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
@@ -292,7 +320,7 @@
 
 (use-package company
     :ensure t
-    :hook (c-mode emacs-lisp-mode go-mode cobol-mode arduino-mode cmake-mode scheme-mode rust-mode css-mode mhtml-mode)
+    :hook (c-mode emacs-lisp-mode go-mode cobol-mode arduino-mode cmake-mode scheme-mode rust-mode css-mode mhtml-mode qml-mode)
     :config
     )
 
