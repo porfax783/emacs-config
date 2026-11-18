@@ -269,7 +269,11 @@
     :config
     (setq TeX-auto-save t)
     (setq TeX-parse-self t)
-    (add-to-list 'TeX-view-program-selection '(output-pdf "Zathura"))
+    (add-to-list 'TeX-view-program-selection '(output-pdf "PDF Tools"))
+    (setq TeX-source-correlate-start-server t)
+    (add-hook 'LaTeX-mode-hook #'TeX-source-correlate-mode)
+    (add-hook 'TeX-after-compilation-finished-functions
+              #'TeX-revert-document-buffer)
     (add-hook 'LaTeX-mode-hook 'visual-line-mode)
     (add-hook 'LaTeX-mode-hook 'flyspell-mode)
     (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
@@ -310,14 +314,23 @@
 ;;       erc-kill-buffer-on-part t
 ;;       erc-auto-query 'bury)
 
-;;pdf tools
+;; PDF Tools
+(defun my/pdf-view-setup ()
+  "Keep text-editing decorations out of PDF buffers."
+  (display-line-numbers-mode -1)
+  (hl-line-mode -1)
+  (visual-line-mode -1)
+  (auto-revert-mode 1))
+
 (use-package pdf-tools
     :ensure t
-;;    :init
-;;    (pdf-tools-install)
+    :mode ("\\.pdf\\'" . pdf-view-mode)
+    :hook (pdf-view-mode . my/pdf-view-setup)
+    :custom
+    (pdf-view-display-size 'fit-width)
+    (pdf-view-resize-factor 1.1)
     :config
-    (add-hook 'pdf-view-mode-hook (lambda ()(display-line-numbers-mode -1)))
-    (add-to-list 'auto-mode-alist '("\\.pdf\\'" . pdf-view-mode)))
+    (pdf-tools-install nil t))
 
 (use-package company
     :ensure t
