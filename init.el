@@ -269,11 +269,9 @@
     :config
     (setq TeX-auto-save t)
     (setq TeX-parse-self t)
-    (add-to-list 'TeX-view-program-selection '(output-pdf "PDF Tools"))
+    (add-to-list 'TeX-view-program-selection '(output-pdf "Zathura"))
     (setq TeX-source-correlate-start-server t)
     (add-hook 'LaTeX-mode-hook #'TeX-source-correlate-mode)
-    (add-hook 'TeX-after-compilation-finished-functions
-              #'TeX-revert-document-buffer)
     (add-hook 'LaTeX-mode-hook 'visual-line-mode)
     (add-hook 'LaTeX-mode-hook 'flyspell-mode)
     (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
@@ -314,23 +312,11 @@
 ;;       erc-kill-buffer-on-part t
 ;;       erc-auto-query 'bury)
 
-;; PDF Tools
-(defun my/pdf-view-setup ()
-  "Keep text-editing decorations out of PDF buffers."
-  (display-line-numbers-mode -1)
-  (hl-line-mode -1)
-  (visual-line-mode -1)
-  (auto-revert-mode 1))
-
-(use-package pdf-tools
+(use-package openwith
     :ensure t
-    :mode ("\\.pdf\\'" . pdf-view-mode)
-    :hook (pdf-view-mode . my/pdf-view-setup)
-    :custom
-    (pdf-view-display-size 'fit-width)
-    (pdf-view-resize-factor 1.1)
     :config
-    (pdf-tools-install nil t))
+    (add-to-list 'openwith-associations '("\\.pdf\\'" "zathura" (file)))
+    (openwith-mode 1))
 
 (use-package company
     :ensure t

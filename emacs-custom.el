@@ -18,7 +18,7 @@
                       cobol-mode company eat ess expand-region fzf
                       geiser geiser-guile go-mode gptel gruvbox-theme
                       iterm magit marginalia markdown-mode
-                      multiple-cursors nov ob-go orderless pdf-tools
+                      multiple-cursors nov ob-go openwith orderless
                       platformio-mode qml-mode rust-mode treemacs
                       vertico winum yasnippet))
  '(tab-stop-list
